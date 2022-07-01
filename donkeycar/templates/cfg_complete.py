@@ -92,7 +92,7 @@ STEERING_RIGHT_PWM = 198        #pwm value for full right steering
 
 #STEERING FOR PWM_STEERING_THROTTLE (and deprecated PIGPIO_PWM OUTPUT)
 STEERING_PWM_PIN = 13           #(deprecated) Pin numbering according to Broadcom numbers
-STEERING_PWM_FREQ = 50          #Frequency for PWM
+STEERING_PWM_FREQ = 60          #Frequency for PWM (original 50)
 STEERING_PWM_INVERTED = False   #If PWM needs to be inverted
 
 #THROTTLE FOR PWM_STEERING_THROTTLE (and deprecated I2C_SERVO)
@@ -103,7 +103,7 @@ THROTTLE_REVERSE_PWM = 220      #pwm value for max reverse throttle
 
 #THROTTLE FOR PWM_STEERING_THROTTLE (and deprecated PIGPIO_PWM OUTPUT)
 THROTTLE_PWM_PIN = 18           #(deprecated) Pin numbering according to Broadcom numbers
-THROTTLE_PWM_FREQ = 50          #Frequency for PWM
+THROTTLE_PWM_FREQ = 60          #Frequency for PWM (original 50)
 THROTTLE_PWM_INVERTED = False   #If PWM needs to be inverted
 
 #
