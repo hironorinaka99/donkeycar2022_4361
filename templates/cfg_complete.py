@@ -68,8 +68,8 @@ SSD1306_RESOLUTION = 1 # 1 = 128x32; 2 = 128x64
 # (deprecated) "PIGPIO_PWM" uses Raspberrys internal PWM
 # (deprecated) "I2C_SERVO" uses PCA9685 servo controller to control a steering servo and an ESC, as in a standard RC car
 #
-DRIVE_TRAIN_TYPE = "PWM_STEERING_THROTTLE"
-
+#DRIVE_TRAIN_TYPE = "PWM_STEERING_THROTTLE"
+DRIVE_TRAIN_TYPE = "I2C_SERVO"
 #
 # PWM_STEERING_THROTTLE
 #
@@ -78,26 +78,21 @@ DRIVE_TRAIN_TYPE = "PWM_STEERING_THROTTLE"
 # Base PWM Frequence is presumed to be 60hz; use PWM_xxxx_SCALE to adjust pulse with for non-standard PWM frequencies
 #
 PWM_STEERING_THROTTLE = {
-    "PWM_STEERING_PIN": "PCA9685.1:40.1",   # PWM output pin for steering servo
+    "PWM_STEERING_PIN": "PCA9685.1:40.0",   # PWM output pin for steering servo
     "PWM_STEERING_SCALE": 1.0,              # used to compensate for PWM frequency differents from 60hz; NOT for adjusting steering range
     "PWM_STEERING_INVERTED": False,         # True if hardware requires an inverted PWM pulse
-    "PWM_THROTTLE_PIN": "PCA9685.1:40.0",   # PWM output pin for ESC
+    "PWM_THROTTLE_PIN": "PCA9685.1:40.1",   # PWM output pin for ESC
     "PWM_THROTTLE_SCALE": 1.0,              # used to compensate for PWM frequence differences from 60hz; NOT for increasing/limiting speed
     "PWM_THROTTLE_INVERTED": False,         # True if hardware requires an inverted PWM pulse
-    "STEERING_LEFT_PWM": 460,               #pwm value for full left steering
-    "STEERING_RIGHT_PWM": 290,              #pwm value for full right steering
-    "THROTTLE_FORWARD_PWM": 500,            #pwm value for max forward throttle
-    "THROTTLE_STOPPED_PWM": 370,            #pwm value for no movement
-    "THROTTLE_REVERSE_PWM": 220,            #pwm value for max reverse throttle
 }
 
 #
 # I2C_SERVO (deprecated in favor of PWM_STEERING_THROTTLE)
 #
-STEERING_CHANNEL = 1            #(deprecated) channel on the 9685 pwm board 0-15
-STEERING_LEFT_PWM = 460         #pwm value for full left steering
-STEERING_RIGHT_PWM = 290        #pwm value for full right steering
-THROTTLE_CHANNEL = 0            #(deprecated) channel on the 9685 pwm board 0-15
+STEERING_CHANNEL = 0            #(deprecated) channel on the 9685 pwm board 0-15
+STEERING_LEFT_PWM = 390         #pwm value for full left steering
+STEERING_RIGHT_PWM = 198        #pwm value for full right steering
+THROTTLE_CHANNEL = 1            #(deprecated) channel on the 9685 pwm board 0-15
 THROTTLE_FORWARD_PWM = 500      #pwm value for max forward throttle
 THROTTLE_STOPPED_PWM = 370      #pwm value for no movement
 THROTTLE_REVERSE_PWM = 220      #pwm value for max reverse throttle
@@ -106,10 +101,10 @@ THROTTLE_REVERSE_PWM = 220      #pwm value for max reverse throttle
 # PIGPIO_PWM (deprecated in favor of PWM_STEERING_THROTTLE)
 #
 STEERING_PWM_PIN = 13           #(deprecated) Pin numbering according to Broadcom numbers
-STEERING_PWM_FREQ = 50          #Frequency for PWM
+STEERING_PWM_FREQ = 60          #Frequency for PWM
 STEERING_PWM_INVERTED = False   #If PWM needs to be inverted
 THROTTLE_PWM_PIN = 18           #(deprecated) Pin numbering according to Broadcom numbers
-THROTTLE_PWM_FREQ = 50          #Frequency for PWM
+THROTTLE_PWM_FREQ = 60          #Frequency for PWM
 THROTTLE_PWM_INVERTED = False   #If PWM needs to be inverted
 
 #
@@ -148,8 +143,8 @@ SERVO_HBRIDGE_2PIN = {
     "PWM_STEERING_PIN": "RPI_GPIO.BOARD.33",       # provides servo pulse to steering servo
     "PWM_STEERING_SCALE": 1.0,        # used to compensate for PWM frequency differents from 60hz; NOT for adjusting steering range
     "PWM_STEERING_INVERTED": False,   # True if hardware requires an inverted PWM pulse
-    "STEERING_LEFT_PWM": 460,         # pwm value for full left steering (use `donkey calibrate` to measure value for your car)
-    "STEERING_RIGHT_PWM": 290,        # pwm value for full right steering (use `donkey calibrate` to measure value for your car)
+    #"STEERING_LEFT_PWM": 460,         # pwm value for full left steering (use `donkey calibrate` to measure value for your car)
+    #"STEERING_RIGHT_PWM": 290,        # pwm value for full right steering (use `donkey calibrate` to measure value for your car)
 }
 
 #
@@ -193,8 +188,8 @@ SERVO_HBRIDGE_3PIN = {
     "PWM_STEERING_PIN": "RPI_GPIO.BOARD.33",   # provides servo pulse to steering servo
     "PWM_STEERING_SCALE": 1.0,        # used to compensate for PWM frequency differents from 60hz; NOT for adjusting steering range
     "PWM_STEERING_INVERTED": False,   # True if hardware requires an inverted PWM pulse
-    "STEERING_LEFT_PWM": 460,         # pwm value for full left steering (use `donkey calibrate` to measure value for your car)
-    "STEERING_RIGHT_PWM": 290,        # pwm value for full right steering (use `donkey calibrate` to measure value for your car)
+    #"STEERING_LEFT_PWM": 460,         # pwm value for full left steering (use `donkey calibrate` to measure value for your car)
+    #"STEERING_RIGHT_PWM": 290,        # pwm value for full right steering (use `donkey calibrate` to measure value for your car)
 }
 
 #
@@ -215,11 +210,11 @@ SERVO_HBRIDGE_3PIN = {
 #   and glide to a stop.
 # - both pwms are full duty cycle (100% HIGH) to brake
 #
-HBRIDGE_PIN_FWD = 18       # provides forward duty cycle to motor
-HBRIDGE_PIN_BWD = 16       # provides reverse duty cycle to motor
-STEERING_CHANNEL = 0       # PCA 9685 channel for steering control
-STEERING_LEFT_PWM = 460    # pwm value for full left steering (use `donkey calibrate` to measure value for your car)
-STEERING_RIGHT_PWM = 290   # pwm value for full right steering (use `donkey calibrate` to measure value for your car)
+#HBRIDGE_PIN_FWD = 18       # provides forward duty cycle to motor
+#HBRIDGE_PIN_BWD = 16       # provides reverse duty cycle to motor
+#STEERING_CHANNEL = 0       # PCA 9685 channel for steering control
+#STEERING_LEFT_PWM = 460    # pwm value for full left steering (use `donkey calibrate` to measure value for your car)
+#STEERING_RIGHT_PWM = 290   # pwm value for full right steering (use `donkey calibrate` to measure value for your car)
 
 #
 # DC_STEER_THROTTLE with one motor as steering, one as drive
@@ -408,10 +403,10 @@ WEB_INIT_MODE = "user"              # which control mode to start in. one of use
 
 #JOYSTICK
 USE_JOYSTICK_AS_DEFAULT = False      #when starting the manage.py, when True, will not require a --js option to use the joystick
-JOYSTICK_MAX_THROTTLE = 0.5         #this scalar is multiplied with the -1 to 1 throttle value to limit the maximum throttle. This can help if you drop the controller or just don't need the full speed available.
+JOYSTICK_MAX_THROTTLE = 0.3         #this scalar is multiplied with the -1 to 1 throttle value to limit the maximum throttle. This can help if you drop the controller or just don't need the full speed available.
 JOYSTICK_STEERING_SCALE = 1.0       #some people want a steering that is less sensitve. This scalar is multiplied with the steering -1 to 1. It can be negative to reverse dir.
 AUTO_RECORD_ON_THROTTLE = True      #if true, we will record whenever throttle is not zero. if false, you must manually toggle recording with some other trigger. Usually circle button on joystick.
-CONTROLLER_TYPE = 'xbox'            #(ps3|ps4|xbox|pigpio_rc|nimbus|wiiu|F710|rc3|MM1|custom) custom will run the my_joystick.py controller written by the `donkey createjs` command
+CONTROLLER_TYPE = 'ps3'            #(ps3|ps4|xbox|pigpio_rc|nimbus|wiiu|F710|rc3|MM1|custom) custom will run the my_joystick.py controller written by the `donkey createjs` command
 USE_NETWORKED_JS = False            #should we listen for remote joystick control over the network?
 NETWORK_JS_SERVER_IP = None         #when listening for network joystick control, which ip is serving this information
 JOYSTICK_DEADZONE = 0.01            # when non zero, this is the smallest throttle before recording triggered.
@@ -422,14 +417,14 @@ JOYSTICK_DEVICE_FILE = "/dev/input/js0" # this is the unix file use to access th
 #For the categorical model, this limits the upper bound of the learned throttle
 #it's very IMPORTANT that this value is matched from the training PC config.py and the robot.py
 #and ideally wouldn't change once set.
-MODEL_CATEGORICAL_MAX_THROTTLE_RANGE = 0.8
+MODEL_CATEGORICAL_MAX_THROTTLE_RANGE = 0.5
 
 #RNN or 3D
 SEQUENCE_LENGTH = 3             #some models use a number of images over time. This controls how many.
 
 #IMU
 HAVE_IMU = False                #when true, this add a Mpu6050 part and records the data. Can be used with a
-IMU_SENSOR = 'mpu6050'          # (mpu6050|mpu9250)
+IMU_SENSOR = 'mpu9250'          # (mpu6050|mpu9250)
 IMU_DLP_CONFIG = 0              # Digital Lowpass Filter setting (0:250Hz, 1:184Hz, 2:92Hz, 3:41Hz, 4:20Hz, 5:10Hz, 6:5Hz)
 
 #SOMBRERO
