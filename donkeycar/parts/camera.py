@@ -326,9 +326,9 @@ class V4LCamera(BaseCamera):
             # Wait for the device to fill the buffer.
             select.select((self.video,), (), ())
             image_data = self.video.read_and_queue()
-            logger.info("Nakagawa image_data",image_data)
+            logger.info("Nakagawa image_data",type(image_data))
             self.frame = jpg_conv.run(image_data)
-            logger.info("Nakagawa frame",self.frame )
+            logger.info("Nakagawa frame",type(self.frame) )
 
     def shutdown(self):
         self.running = False
