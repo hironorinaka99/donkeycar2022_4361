@@ -135,8 +135,11 @@ class Webcam(BaseCamera):
             if camera_index < 0 or camera_index >= len(l):
                 raise CameraError(f"The 'CAMERA_INDEX={camera_index}' configuration in myconfig.py is out of range.")
 
+            logger.info(f'Nakagawa camera test1')
             self.cam = pygame.camera.Camera(l[camera_index], self.resolution, "RGB")
+            logger.info(f'Nakagawa camera test2')
             self.cam.start()
+            logger.info(f'Nakagawa camera test3')
 
             logger.info(f'Webcam opened at {l[camera_index]} ...')
             warming_time = time.time() + 5  # quick after 5 seconds
