@@ -301,22 +301,18 @@ class V4LCamera(BaseCamera):
 
         #logger.info("V4L camera granted %d, %d resolution." % (self.size_x, self.size_y))
         logger.info("V4L camera granted %d, %d resolution." % (self.size_x, self.size_y), self.fourcc)
-        logger.info("Nakagawa1")
         # Create a buffer to store image data in. This must be done before
         # calling 'start' if v4l2capture is compiled with libv4l2. Otherwise
         # raises IOError.
         self.video.create_buffers(30)
-        logger.info("Nakagawa2")
 
         # Send the buffer to the device. Some devices require this to be done
         # before calling 'start'.
         
         self.video.queue_all_buffers()
-        logger.info("Nakagawa3")
 
         # Start the device. This lights the LED if it's a camera that has one.
         self.video.start()
-        logger.info("Nakagawa4")
 
 
     def update(self):
@@ -330,8 +326,9 @@ class V4LCamera(BaseCamera):
             # Wait for the device to fill the buffer.
             select.select((self.video,), (), ())
             image_data = self.video.read_and_queue()
-            image_data = image_data.resize((160,120))#Nakagawa
+            logger.info("Nakagawa image_data",image_data)
             self.frame = jpg_conv.run(image_data)
+            logger.info("Nakagawa frame",self.frame )
 
     def shutdown(self):
         self.running = False
