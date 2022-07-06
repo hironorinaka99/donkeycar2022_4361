@@ -310,6 +310,7 @@ class V4LCamera(BaseCamera):
 
         # Send the buffer to the device. Some devices require this to be done
         # before calling 'start'.
+        
         self.video.queue_all_buffers()
         logger.info("Nakagawa3")
 
@@ -329,6 +330,7 @@ class V4LCamera(BaseCamera):
             # Wait for the device to fill the buffer.
             select.select((self.video,), (), ())
             image_data = self.video.read_and_queue()
+            image_data = image_data.resize((160,120))#Nakagawa
             self.frame = jpg_conv.run(image_data)
 
     def shutdown(self):
