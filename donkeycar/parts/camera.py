@@ -281,8 +281,7 @@ class V4LCamera(BaseCamera):
     python setup.py build
     pip install -e .
     '''
-    #def __init__(self, image_w=160, image_h=120, image_d=3, framerate=20, dev_fn="/dev/video0", fourcc='MJPG'):
-    def __init__(self, image_w=1472, image_h=736, image_d=3, framerate=20, dev_fn="/dev/video0", fourcc='MJPG'):
+    def __init__(self, image_w=160, image_h=120, image_d=3, framerate=20, dev_fn="/dev/video0", fourcc='MJPG'):
     
         self.running = True
         self.frame = None
@@ -300,19 +299,24 @@ class V4LCamera(BaseCamera):
         # return another size if it doesn't support the suggested one.
         self.size_x, self.size_y = self.video.set_format(self.image_w, self.image_h, fourcc=self.fourcc)
 
-        logger.info("V4L camera granted %d, %d resolution." % (self.size_x, self.size_y))
-
+        #logger.info("V4L camera granted %d, %d resolution." % (self.size_x, self.size_y))
+        logger.info("V4L camera granted %d, %d resolution." % (self.size_x, self.size_y), self.fourcc)
+        logger.info("Nakagawa1")
         # Create a buffer to store image data in. This must be done before
         # calling 'start' if v4l2capture is compiled with libv4l2. Otherwise
         # raises IOError.
         self.video.create_buffers(30)
+        logger.info("Nakagawa2")
 
         # Send the buffer to the device. Some devices require this to be done
         # before calling 'start'.
         self.video.queue_all_buffers()
+        logger.info("Nakagawa3")
 
         # Start the device. This lights the LED if it's a camera that has one.
         self.video.start()
+        logger.info("Nakagawa4")
+
 
     def update(self):
         import select
