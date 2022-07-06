@@ -281,8 +281,9 @@ class V4LCamera(BaseCamera):
     python setup.py build
     pip install -e .
     '''
-    def __init__(self, image_w=160, image_h=120, image_d=3, framerate=20, dev_fn="/dev/video0", fourcc='MJPG'):
-
+    #def __init__(self, image_w=160, image_h=120, image_d=3, framerate=20, dev_fn="/dev/video0", fourcc='MJPG'):
+    def __init__(self, image_w=1472, image_h=736, image_d=3, framerate=20, dev_fn="/dev/video0", fourcc='MJPG'):
+    
         self.running = True
         self.frame = None
         self.image_w = image_w
