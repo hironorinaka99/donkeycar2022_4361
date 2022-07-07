@@ -317,6 +317,7 @@ class V4LCamera(BaseCamera):
 
     def update(self):
         import select
+        import cv2
         from donkeycar.parts.image import JpgToImgArr
 
         self.init_video()
@@ -326,19 +327,8 @@ class V4LCamera(BaseCamera):
             # Wait for the device to fill the buffer.
             select.select((self.video,), (), ())
             image_data = self.video.read_and_queue()
-            if isinstance(image_data, np.ndarray):
-                print("image_data NumPy Image")
-            elif isinstance(image_data, Image.Image):
-                print("image_data Pillow Image")
-            else:
-                print("image_data Other format")
             self.frame = jpg_conv.run(image_data)
-            if isinstance(self.frame , np.ndarray):
-                print("self.frame  NumPy Image")
-            elif isinstance(self.frame , Image.Image):
-                print("self.frame  Pillow Image")
-            else:
-                print("self.frame  Other format")
+            self.frame = cv2.resize(self.frame, (160,120)) #Nakagawa           
 
     def shutdown(self):
         self.running = False
