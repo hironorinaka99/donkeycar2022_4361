@@ -326,9 +326,19 @@ class V4LCamera(BaseCamera):
             # Wait for the device to fill the buffer.
             select.select((self.video,), (), ())
             image_data = self.video.read_and_queue()
-            logger.info("Nakagawa image_data",type(image_data))
+            if isinstance(image_data, np.ndarray):
+                print("image_data NumPy Image")
+            elif isinstance(image, Image.Image):
+                print("image_data Pillow Image")
+            else
+                print("image_data Other format")
             self.frame = jpg_conv.run(image_data)
-            logger.info("Nakagawa frame",type(self.frame) )
+            if isinstance(self.frame , np.ndarray):
+                print("self.frame  NumPy Image")
+            elif isinstance(self.frame , Image.Image):
+                print("self.frame  Pillow Image")
+            else
+                print("self.frame  Other format")
 
     def shutdown(self):
         self.running = False
