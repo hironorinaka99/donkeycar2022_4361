@@ -299,8 +299,7 @@ class V4LCamera(BaseCamera):
         # return another size if it doesn't support the suggested one.
         self.size_x, self.size_y = self.video.set_format(self.image_w, self.image_h, fourcc=self.fourcc)
 
-        #logger.info("V4L camera granted %d, %d resolution." % (self.size_x, self.size_y))
-        logger.info("V4L camera granted %d, %d resolution." % (self.size_x, self.size_y), self.fourcc)
+        logger.info("V4L camera granted %d, %d resolution." % (self.size_x, self.size_y))
         # Create a buffer to store image data in. This must be done before
         # calling 'start' if v4l2capture is compiled with libv4l2. Otherwise
         # raises IOError.
