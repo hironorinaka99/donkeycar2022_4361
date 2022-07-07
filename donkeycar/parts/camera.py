@@ -328,7 +328,7 @@ class V4LCamera(BaseCamera):
             image_data = self.video.read_and_queue()
             if isinstance(image_data, np.ndarray):
                 print("image_data NumPy Image")
-            elif isinstance(image, Image.Image):
+            elif isinstance(image_data, Image.Image):
                 print("image_data Pillow Image")
             else:
                 print("image_data Other format")
