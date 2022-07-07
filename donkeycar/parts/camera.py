@@ -330,14 +330,14 @@ class V4LCamera(BaseCamera):
                 print("image_data NumPy Image")
             elif isinstance(image, Image.Image):
                 print("image_data Pillow Image")
-            else
+            else:
                 print("image_data Other format")
             self.frame = jpg_conv.run(image_data)
             if isinstance(self.frame , np.ndarray):
                 print("self.frame  NumPy Image")
             elif isinstance(self.frame , Image.Image):
                 print("self.frame  Pillow Image")
-            else
+            else:
                 print("self.frame  Other format")
 
     def shutdown(self):
