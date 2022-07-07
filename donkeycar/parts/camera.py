@@ -332,10 +332,10 @@ class V4LCamera(BaseCamera):
             #logger.info("type(self.frame) %s" % type(self.frame))
             #logger.info("self.frame.shape before %s" % str(self.frame.shape))
             #logger.info("self.frame.dtype before %s" % str(self.frame.dtype))
-            self.frame = cv2.resize(self.frame, (320,160)) #Nakagawa
+            self.frame = cv2.resize(self.frame, (320,120)) #Nakagawa
             #self.frame = self.frame[80:160,0:320] #下側のみ top:bottm, left,right
-            self.frame_left = self.frame[80:160,0:160] #下側の左
-            self.frame_right = self.frame[80:160,160:320] #下側の右
+            self.frame_left = self.frame[60:120,0:160] #下側の左
+            self.frame_right = self.frame[60:120,160:320] #下側の右
             self.frame = cv2.vconcat((self.frame_left,self.frame_right))
 
             #logger.info("type(self.frame) %s" % type(self.frame))
