@@ -289,6 +289,8 @@ class V4LCamera(BaseCamera):
         self.image_h = image_h
         self.dev_fn = dev_fn
         self.fourcc = fourcc
+        self.frame_left = None
+        self.frame_right = None
 
     def init_video(self):
         import v4l2capture
@@ -331,7 +333,11 @@ class V4LCamera(BaseCamera):
             #logger.info("self.frame.shape before %s" % str(self.frame.shape))
             #logger.info("self.frame.dtype before %s" % str(self.frame.dtype))
             self.frame = cv2.resize(self.frame, (320,160)) #Nakagawa
-            self.frame = self.frame[80:160,0:320] #下側のみ
+            #self.frame = self.frame[80:160,0:320] #下側のみ top:bottm, left,right
+            self.frame_left = self.frame[80:160,0:160] #下側の左
+            self.frame_right = self.frame[80:160,160:320] #下側の右
+            self.frame = cv2.vconcat((self.frame_left,self.frame_right))
+
             #logger.info("type(self.frame) %s" % type(self.frame))
             #logger.info("self.frame.shape after %s" % str(self.frame.shape))
             #logger.info("self.frame.dtype after %s" % str(self.frame.dtype))
