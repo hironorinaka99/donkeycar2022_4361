@@ -285,6 +285,7 @@ class V4LCamera(BaseCamera):
     
         self.running = True
         self.frame = None
+        self.frame_temp = None       
         self.image_w = image_w
         self.image_h = image_h
         self.dev_fn = dev_fn
@@ -328,14 +329,14 @@ class V4LCamera(BaseCamera):
             # Wait for the device to fill the buffer.
             select.select((self.video,), (), ())
             image_data = self.video.read_and_queue()
-            self.frame = jpg_conv.run(image_data)
+            self.frame_temp = jpg_conv.run(image_data)
             #logger.info("type(self.frame) %s" % type(self.frame))
             #logger.info("self.frame.shape before %s" % str(self.frame.shape))
             #logger.info("self.frame.dtype before %s" % str(self.frame.dtype))
-            self.frame = cv2.resize(self.frame, (320,120)) #Nakagawa
+            self.frame_temp = cv2.resize(self.frame_temp, (320,120)) #Nakagawa
             #self.frame = self.frame[80:160,0:320] #下側のみ top:bottm, left,right
-            self.frame_left = self.frame[60:120,0:160] #下側の左
-            self.frame_right = self.frame[60:120,160:320] #下側の右
+            self.frame_left = self.frame_temp[60:120,0:160] #下側の左
+            self.frame_right = self.frame_temp[60:120,160:320] #下側の右
             self.frame = cv2.vconcat((self.frame_left,self.frame_right))
 
             #logger.info("type(self.frame) %s" % type(self.frame))
