@@ -134,7 +134,6 @@ class KerasInterpreter(Interpreter):
 
     def invoke(self, inputs):
         outputs = self.model(inputs, training=False)
-        logger.info("interpreter.py invoke outputs: %s" %str(outputs.shape)) #Nakagawa         
         # for functional models the output here is a list
         if type(outputs) is list:
             # as we invoke the interpreter with a batch size of one we remove
