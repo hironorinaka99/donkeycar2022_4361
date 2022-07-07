@@ -328,7 +328,11 @@ class V4LCamera(BaseCamera):
             select.select((self.video,), (), ())
             image_data = self.video.read_and_queue()
             self.frame = jpg_conv.run(image_data)
+            print("type(self.frame)",type(self.frame))
+            print("self.frame.shape",self.frame.shape)
             self.frame = cv2.resize(self.frame, (160,120)) #Nakagawa           
+            print("AfterCV2type(self.frame)",type(self.frame))
+            print("AfterCV2self.frame.shape",self.frame.shape)
 
     def shutdown(self):
         self.running = False
