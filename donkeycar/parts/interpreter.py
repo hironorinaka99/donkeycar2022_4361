@@ -134,6 +134,7 @@ class KerasInterpreter(Interpreter):
 
     def invoke(self, inputs):
         outputs = self.model(inputs, training=False)
+        logger.info("interpreter.py invoke outputs: %s" %str(outputs.shape)) #Nakagawa         
         # for functional models the output here is a list
         if type(outputs) is list:
             # as we invoke the interpreter with a batch size of one we remove
@@ -146,6 +147,7 @@ class KerasInterpreter(Interpreter):
 
     def predict(self, img_arr: np.ndarray, other_arr: np.ndarray) \
             -> Sequence[Union[float, np.ndarray]]:
+        logger.info("interpreter.py predict img_arr.shape : %s" %str(img_arr.shape)) #Nakagawa 
         img_arr = np.expand_dims(img_arr, axis=0)
         inputs = img_arr
         if other_arr is not None:
