@@ -332,6 +332,8 @@ class V4LCamera(BaseCamera):
             #self.frame = cv2.resize(self.frame, (160,120)) #Nakagawa           
             #logger.info("AfterCV2type(self.frame)",type(self.frame))
             #logger.info("AfterCV2self.frame.shape",self.frame.shape)
+        
+        logger.info("type(self.frame)2",type(self.frame))
 
     def shutdown(self):
         self.running = False
