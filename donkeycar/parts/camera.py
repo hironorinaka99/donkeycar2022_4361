@@ -308,10 +308,10 @@ class V4LCamera(BaseCamera):
 
         # Send the buffer to the device. Some devices require this to be done
         # before calling 'start'.
-        time.sleep(10) #nakagawa
+        time.sleep(100) #nakagawa
         self.video.queue_all_buffers()
         # Start the device. This lights the LED if it's a camera that has one.
-        time.sleep(10) #nakagawa
+        time.sleep(100) #nakagawa
         self.video.start()
 
 
