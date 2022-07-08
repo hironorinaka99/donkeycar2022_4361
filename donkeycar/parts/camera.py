@@ -345,7 +345,6 @@ class V4LCamera(BaseCamera):
 
     def shutdown(self):
         self.running = False
-        self.video.close()
         time.sleep(0.5)
 
 
