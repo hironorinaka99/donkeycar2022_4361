@@ -146,7 +146,7 @@ class KerasInterpreter(Interpreter):
 
     def predict(self, img_arr: np.ndarray, other_arr: np.ndarray) \
             -> Sequence[Union[float, np.ndarray]]:
-        logger.info("interpreter.py predict img_arr.shape : %s" %str(img_arr.shape)) #Nakagawa 
+        #logger.info("interpreter.py predict img_arr.shape : %s" %str(img_arr.shape)) #Nakagawa 
         img_arr = np.expand_dims(img_arr, axis=0)
         inputs = img_arr
         if other_arr is not None:

@@ -119,7 +119,9 @@ class KerasPilot(ABC):
                                 state vector in the Behavioural model
             :return:            tuple of (angle, throttle)
         """
+        #logger.info("keras.py inference img_arr.shape : %s" %str(img_arr.shape)) #Nakagawa 
         out = self.interpreter.predict(img_arr, other_arr)
+        
         return self.interpreter_to_output(out)
 
     def inference_from_dict(self, input_dict: Dict[str, np.ndarray]) \
