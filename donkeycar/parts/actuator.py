@@ -131,6 +131,7 @@ class PCA9685:
             def get_bus():
                 return busnum
             I2C.get_default_bus = get_bus
+        time.sleep(0.1) #Nakagawa
         self.pwm = Adafruit_PCA9685.PCA9685(address=address)
         self.pwm.set_pwm_freq(frequency)
         self.channel = channel

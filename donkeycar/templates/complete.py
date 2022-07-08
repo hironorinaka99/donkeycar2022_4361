@@ -591,7 +591,7 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None,
         # This driver will be removed in a future release
         #
         from donkeycar.parts.actuator import PCA9685, PWMSteering, PWMThrottle
-
+        time.sleep(0.1) #Nakagawa
         steering_controller = PCA9685(cfg.STEERING_CHANNEL, cfg.PCA9685_I2C_ADDR, busnum=cfg.PCA9685_I2C_BUSNUM)
         steering = PWMSteering(controller=steering_controller,
                                         left_pulse=cfg.STEERING_LEFT_PWM,
